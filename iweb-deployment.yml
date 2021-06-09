@@ -1,0 +1,24 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: iweb-deployment
+spec:
+  selector:
+    matchLabels:
+      app: iweb
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: iweb
+    spec:
+      containers:
+      - name: iweb
+        image: stan1024/iweblens-app:third
+        resources:
+          limits:
+            cpu: "0.5"
+          requests:
+            cpu: "0.5"
+        ports:
+        - containerPort: 5000
